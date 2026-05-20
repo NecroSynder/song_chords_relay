@@ -1,0 +1,179 @@
+/* ----------------------------------
+   THEME VARIABLES
+----------------------------------- */
+:root {
+    --page-bg: #f4f5f8;
+    --card-bg: #ffffff;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --accent: #6b46c1;
+    --border-light: rgba(0, 0, 0, 0.06);
+    --shadow-small: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    --shadow-large: 0 20px 40px -5px rgba(0, 0, 0, 0.08);
+    --heading-color: #1a202c;
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Dark mode overrides (Activated via JavaScript) */
+[data-theme="dark"] {
+    --page-bg: #0d0f12;
+    --card-bg: #1a1d24;
+    --text-main: #e2e4e9;
+    --text-muted: #8b949e;
+    --accent: #a382e2;
+    --border-light: rgba(255, 255, 255, 0.06);
+    --shadow-small: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    --shadow-large: 0 20px 40px -5px rgba(0, 0, 0, 0.5);
+    --heading-color: #ffffff;
+}
+
+/* ----------------------------------
+   LAYOUT & STRUCTURE
+----------------------------------- */
+body {
+    background-color: var(--page-bg);
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    line-height: 1.7;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.markdown-reading-view {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 750px;
+    padding: 60px 80px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-small), var(--shadow-large); 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ----------------------------------
+   FLOATING THEME BUTTON
+----------------------------------- */
+.theme-btn {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    box-shadow: var(--shadow-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+}
+
+/* ----------------------------------
+   HEADINGS (H1 - H6)
+----------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    transition: color 0.3s ease;
+}
+
+h1 {
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-top: 0;
+    margin-bottom: 1em;
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.6em;
+}
+
+h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.3em;
+}
+
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 1em; text-transform: uppercase; color: var(--text-muted); }
+
+/* ----------------------------------
+   TYPOGRAPHY & FORMATTING
+----------------------------------- */
+/* Section Headers (**text**) */
+strong {
+    color: var(--accent);
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 1.8em;
+    margin-bottom: 0.4em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+/* Standard Chord Lines */
+.obsidian-line {
+    font-size: 1.15em;
+    letter-spacing: 0.5px;
+    margin: 8px 0;
+}
+
+/* Custom Comments (~text~) */
+.obsidian-comment {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.95em;
+}
+
+/* Normal Markdown Italics (*text*) */
+em {
+    font-style: italic;
+    color: inherit;
+    font-size: inherit;
+}
+
+/* ----------------------------------
+   KATEX (MATH / CHORDS)
+----------------------------------- */
+.katex {
+    font-size: 1.1em !important;
+    color: var(--heading-color); 
+}
+
+/* Make KaTeX math inherit the muted color when placed inside a comment or italics */
+.obsidian-comment .katex,
+em .katex {
+    color: var(--text-muted) !important;
+}
+
+/* ----------------------------------
+   MOBILE RESPONSIVENESS
+----------------------------------- */
+@media (max-width: 768px) {
+    body { padding: 80px 10px 20px 10px; }
+    .markdown-reading-view { padding: 40px 30px; border-radius: 12px; }
+    .theme-btn { top: 16px; right: 16px; }
+}
