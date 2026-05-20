@@ -289,7 +289,7 @@ em { font-style: italic; }
     color: var(--heading-color); 
 }
 
-.obsidian-comment .katex, em .katex {
+.obsidian-comment .katex {
     color: var(--text-muted) !important;
 }
 
