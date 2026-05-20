@@ -45,6 +45,15 @@ body {
     transition: var(--transition-standard);
 }
 
+/* Container to hold multiple cards and space them out */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Space between each song card */
+    width: 100%;
+}
+
 .markdown-reading-view {
     background-color: var(--card-bg);
     width: 100%;

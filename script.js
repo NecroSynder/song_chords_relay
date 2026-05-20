@@ -1,125 +1,4 @@
-// 1. Your raw text content
-const rawMarkdown = `
-# More Than Able
 
-**Intro**
-1 1$^{\\text{sus}}$ 1 5/7 4
-1 1$^{\\text{sus}}$ 6 5 4
-
-**Verse 1**
-1 4$^2$/1
-1/7 4$^2$/6
-6 5$^{\\text{(add4)}}$
-4$^2$ 1 4$^2$/6
-
-**Verse 2**
-1 4$^2$/1
-1 4$^2$/1
-6 5$^{\\text{(add4)}}$ 4$^2$
-1 5/7
-
-**Chorus 1**
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ | 6 5$^{\\text{(add4)}}$ 4
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ 
-6 5$^{\\text{(add4)}}$ 4 2$^7$
-
-Turnaround
-1 4/1 1 4/1 
-
-**Verse 3**
-1 4/1
-1 4/1
-6 5$^{\\text{(add4)}}$
-4$^2$ 1
-5/7
-
-**Chorus 1**
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ | 6 5$^{\\text{(add4)}}$ 4
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ 
-6 5$^{\\text{(add4)}}$ 4 2$^7$
-
-**Bridge**
-1 
-5/1 4$^2$/1
-1
-5/1 4$^2$/1 
-
-**Bridge 2**
-1
-5$^{\\text{sus}}$ (6 5$^{\\text{sus}}$ 4$^2$)
-1
-5$^{\\text{sus}}$ (6 5$^{\\text{sus}}$ 4$^2$)
-
-**Bridge 2 Alt.**
-1
-2$^7$ (6 5$^{\\text{sus}}$ 4$^2$)
-1
-2$^7$ (6 5$^{\\text{sus}}$ 4$^2$)
-
-**Refrain/Vamp 1**
-1 4$^2$/1
-1 4$^2$/1
-1/3 5 *~(one time, change the chord from 5 to 7)~*
-6 5
-4$^2$ 4$^\\text{m6}$
- REPEAT REFRAIN/VAMP 1
-
-**Tag (Who am I to deny ...)**
-6 5
-4$^2$ 4$^\\text{m6}$ *~(one last run change from 4$^\\text{m6}$ to 2)~*  
-REPEAT TAG
-
-**Breakdown Chorus**
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ | 6 5$^{\\text{(add4)}}$ 4
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ 
-6 5$^{\\text{(add4)}}$ 4 4$^\\text{m6}$
-
-**Channel *~(or another new bridge)~***
-1
-1/7
-1$^2$/7$b$
-4$^2$/6 2$^7$
-1
-1/7
-1$^2$/7$b$
-4$^2$/6 2$^7$
-
-**Vamp 2 (You're not done...)**
-1
-1$^2$/7$b$
-4$^2$/6
-4$^\\text{m6}$/6$b$ *~passing chord optional: 4~* 
-REPEAT VAMP 2 2x
-~Alt. Chords~
-1
-~*experimental: Bass 7$b$ then pass to (octave 2 7$b$ 6) || the rest: 7$b^{\\text{add9}}$/2 then 4$^2$/6~*
-4$^\\text{m6}$/6$b$ *~(passing chord after: 1 4$^\\text{m6}$)~*
-
-**Tag**
-6 5$^{\\text{(add4)}}$ 
-4$^2$ 2$^7$
-6 5$^{\\text{(add4)}}$ 
-4$^2$ 4$^\\text{m6}$
-
-**Final Chorus**
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ | 6 5$^{\\text{(add4)}}$ 4
-1 (4/1 1)  | 1 1/7 4
-6 5$^{\\text{(add4)}}$ 4$^2$ 
-6 5$^{\\text{(add4)}}$ 4 4$^\\text{m6}$
-
-**Tag**
-6 5$^{\\text{(add4)}}$ 4 4$^\\text{m6}$
-REPEAT TAG as desired
-
-**Final Chord**
-1`;
 // ==========================================
 // 1. MARKDOWN PARSER (Pure Function)
 // ==========================================
@@ -171,18 +50,42 @@ function parseMarkdown(text) {
 // 2. DOM & RENDERER LOGIC
 // ==========================================
 
+// Array of your chord files inside the folder
+const chordFiles = [
+    'chords/more-than-able.md',
+    'chords/another-song.md' // Add new songs here
+];
+
 /**
- * Injects markdown into a container and triggers KaTeX rendering.
- * @param {string} text - The raw markdown text.
- * @param {string} containerId - The ID of the target DOM element.
+ * Fetches markdown files and renders them as individual cards.
  */
-function renderContentToDOM(text, containerId) {
-    const container = document.getElementById(containerId);
+async function loadAndRenderChords() {
+    const container = document.getElementById('chord-container');
     if (!container) return;
 
-    container.innerHTML = parseMarkdown(text);
+    for (const file of chordFiles) {
+        try {
+            // Fetch the file content from the folder
+            const response = await fetch(file);
+            if (!response.ok) throw new Error(`Failed to load ${file}`);
+            const text = await response.text();
 
-    // Trigger KaTeX to render all math blocks
+            // Create a new card element for the song
+            const card = document.createElement('div');
+            card.className = 'markdown-reading-view';
+            
+            // Parse the markdown and inject it into the card
+            card.innerHTML = parseMarkdown(text);
+            
+            // Add the card to the main container
+            container.appendChild(card);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    // Trigger KaTeX to render all math blocks in the whole container after all cards load
     if (typeof renderMathInElement === 'function') {
         renderMathInElement(container, {
             delimiters: [
@@ -233,11 +136,7 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
 // ==========================================
 
 window.addEventListener('DOMContentLoaded', () => {
-    // Note: If KaTeX fails to find elements because it hasn't initialized yet, 
-    // you can restore the setTimeout or, better yet, use requestAnimationFrame.
-    if (typeof rawMarkdown !== 'undefined') {
-        renderContentToDOM(rawMarkdown, 'obsidian-render');
-    }
-
+    // Call the new async function instead of the old renderContentToDOM
+    loadAndRenderChords();
     initThemeToggle('theme-toggle', 'theme-icon');
 });
