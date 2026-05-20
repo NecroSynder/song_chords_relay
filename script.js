@@ -132,11 +132,45 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
 }
 
 // ==========================================
+// 3.5 LEGEND TOGGLE MANAGER (SIMPLIFIED)
+// ==========================================
+
+function initLegendToggle() {
+    const legendCard = document.getElementById('legend-card');
+    const toggleBtn = document.getElementById('legend-toggle');
+    
+    if (!legendCard || !toggleBtn) return;
+
+    // Check if the user previously closed it
+    const isCollapsed = localStorage.getItem('legend-collapsed') === 'true';
+    
+    if (isCollapsed) {
+        legendCard.classList.add('is-collapsed');
+        toggleBtn.innerHTML = '＋'; 
+        toggleBtn.setAttribute('aria-label', 'Expand Legend');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        const nowCollapsed = legendCard.classList.toggle('is-collapsed');
+        localStorage.setItem('legend-collapsed', nowCollapsed);
+        
+        // Quick simple sign swap
+        if (nowCollapsed) {
+            toggleBtn.innerHTML = '＋';
+            toggleBtn.setAttribute('aria-label', 'Expand Legend');
+        } else {
+            toggleBtn.innerHTML = '─';
+            toggleBtn.setAttribute('aria-label', 'Collapse Legend');
+        }
+    });
+}
+
+// ==========================================
 // 4. INITIALIZATION
 // ==========================================
 
 window.addEventListener('DOMContentLoaded', () => {
-    // Call the new async function instead of the old renderContentToDOM
     loadAndRenderChords();
     initThemeToggle('theme-toggle', 'theme-icon');
+    initLegendToggle(); // <-- Fire up the new show/hide engine!
 });
