@@ -53,7 +53,7 @@ function parseMarkdown(text) {
 // Array of your chord files inside the folder
 const chordFiles = [
     'chords/more-than-able.md',
-    'chords/another-song.md' // Add new songs here
+     // Add new songs here
 ];
 
 /**
