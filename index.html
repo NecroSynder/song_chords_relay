@@ -6,19 +6,19 @@
     <title>More Than Able - Chord Chart</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
-        <span id="theme-icon">🌙</span>
-    </button>
-
-    <div id="obsidian-render" class="markdown-reading-view"></div>
 
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    
-    <script src="script.js" defer></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+        <span id="theme-icon" aria-hidden="true">🌙</span>
+    </button>
+
+    <main id="obsidian-render" class="markdown-reading-view"></main>
+
 </body>
 </html>
