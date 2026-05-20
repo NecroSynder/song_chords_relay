@@ -116,5 +116,5 @@ REPEAT VAMP 2 2x
 6 5$^{\text{(add4)}}$ 4 4$^\text{m6}$
 REPEAT TAG as desired
 
-Final Chord
+**Tag**
 1
