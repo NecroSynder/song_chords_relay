@@ -72,7 +72,7 @@ body {
     position: fixed;
     top: 60px;
     left: 40px;
-    width: 210px;
+    width: 250px;
     background-color: var(--card-bg);
     border: 1px solid var(--border-light);
     border-radius: 12px;
@@ -189,7 +189,7 @@ body {
 ----------------------------------- */
 .theme-btn {
     position: fixed;
-    top: 24px;
+    bottom: 24px; /* Changed from top: 24px */
     right: 24px;
     background-color: var(--card-bg);
     border: 1px solid var(--border-light);
@@ -210,6 +210,109 @@ body {
 .theme-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-large);
+}
+
+/* ----------------------------------
+   FLOATING NAVIGATION (TOC)
+----------------------------------- */
+.floating-toc {
+    position: fixed;
+    top: 60px;
+    right: 40px; /* Positions it opposite to the legend */
+    width: 250px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow-small), var(--shadow-large);
+    z-index: 1000;
+    box-sizing: border-box;
+    max-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, max-height 0.3s ease, var(--transition-standard);
+}
+
+.toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; 
+}
+
+.toc-header h4 {
+    margin: 0;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.toc-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9em;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.toc-toggle-btn:hover {
+    background-color: var(--border-light);
+}
+
+.toc-content {
+    max-height: 1000px; 
+    opacity: 1;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-light);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(136, 136, 136, 0.3) transparent;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.2s ease, margin-top 0.3s ease;
+}
+
+.toc-content button {
+    background: none;
+    border: none;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 0.9em;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+}
+
+.toc-content button:hover {
+    background-color: var(--page-bg);
+    color: var(--accent);
+}
+
+/* Collapsed State for TOC */
+.floating-toc.is-collapsed {
+    max-height: 58px;
+}
+
+.floating-toc.is-collapsed .toc-content {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    padding-top: 0;
+    border-top-color: transparent;
+    overflow: hidden; 
+    pointer-events: none;
 }
 
 /* ----------------------------------
@@ -287,21 +390,37 @@ em { font-style: italic; }
     body {
         flex-direction: column;
         align-items: center;
-        padding: 100px 20px 40px 20px;
+        /* Reduced top padding since floating cards are now inline */
+        padding: 40px 20px 40px 20px; 
     }
-    .floating-legend {
+    .floating-legend, .floating-toc {
         position: relative;
         top: auto;
         left: auto;
+        right: auto;
         width: 100%;
         max-width: 750px;
-        margin-bottom: 24px;
+        margin-bottom: 16px; /* Spacing between the menu cards */
     }
 }
 
 @media (max-width: 768px) {
-    body { padding: 100px 10px 20px 10px; }
-    .markdown-reading-view { padding: 40px 30px; border-radius: 12px; }
-    .theme-btn { top: 16px; right: 16px; }
-    .cards-container { gap: 32px; }
+    body { 
+        /* Added extra bottom padding so you can scroll past the floating theme button */
+        padding: 24px 12px 100px 12px; 
+    }
+    .markdown-reading-view { 
+        padding: 32px 20px; /* Better text breathing room for smaller screens */
+        border-radius: 12px; 
+    }
+    .cards-container { 
+        gap: 24px; 
+    }
+    /* Moves the theme button to the bottom right on mobile to stop text overlapping */
+    .theme-btn { 
+        top: auto; 
+        bottom: 24px; 
+        right: 24px; 
+        box-shadow: var(--shadow-large);
+    }
 }

@@ -13,7 +13,6 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-
     <aside id="legend-card" class="floating-legend">
         <header class="legend-header">
             <h4>Chord Legend</h4>
@@ -30,6 +29,9 @@
                 <dt><strong>Parenthesis ( )</strong></dt>
                 <dd>Passing Chord</dd>
                 
+                <dt><strong>hyphen ---</strong></dt>
+                <dd>every hyphen is a beat</dd>
+
                 <dt><strong>sus</strong></dt>
                 <dd>Suspended chord</dd>
                 
@@ -37,6 +39,15 @@
                 <dd>Added 4th note</dd>
             </dl>
         </div>
+    </aside>
+
+    <aside id="toc-card" class="floating-toc">
+        <header class="toc-header">
+            <h4>Songs</h4>
+            <button id="toc-toggle" class="toc-toggle-btn" aria-label="Toggle Navigation" aria-expanded="true">─</button>
+        </header>
+        <div id="toc-content" class="toc-content">
+            </div>
     </aside>
 
     <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
