@@ -2,10 +2,9 @@
 // 1. CHORD CONFIGURATION & TRACKING
 // ==========================================
 
-// Add your relative markdown file paths in this array
 const chordFiles = [
     'chords/more-than-able.md'
-    // Add additional chord files here as you make them!
+    // Add additional chord files here
 ];
 
 // ==========================================
@@ -17,6 +16,7 @@ const MARKDOWN_RULES = [
     { regex: /\*\*(.*?)\*\*/g, replacement: '<strong>$1</strong>' },
     { regex: /\*(.*?)\*/g, replacement: '<em>$1</em>' },
     { regex: /~(.*?)~/g, replacement: '<span class="obsidian-comment">$1</span>' },
+    // Converts custom chord syntax into standard LaTeX for KaTeX
     { regex: /([1-7][b#]?)\^(\{.*?\}|\\text\{.*?\}|[a-zA-Z0-9]+)/g, replacement: '\\($1^$2\\)' }
 ];
 
@@ -38,7 +38,7 @@ function parseMarkdown(text) {
         if (headingLevel > 0) {
             return `<h${headingLevel}>${trimmedLine}</h${headingLevel}>`;
         }
-        return `<div class="obsidian-line">${trimmedLine}</div>`;
+        return `<div class="obsidian-line">${trimmedLine || '&nbsp;'}</div>`; // Preserves empty lines for spacing
     }).join('\n');
 }
 
@@ -50,33 +50,42 @@ async function loadAndRenderChords() {
     const container = document.getElementById('chord-container');
     if (!container) return;
 
-    for (const file of chordFiles) {
-        try {
-            const response = await fetch(file);
-            if (!response.ok) throw new Error(`Could not fetch ${file}`);
-            const markdownText = await response.text();
+    try {
+        // Optimization: Fetch all markdown files in parallel instead of sequentially
+        const fetchPromises = chordFiles.map(file => 
+            fetch(file).then(res => {
+                if (!res.ok) throw new Error(`Could not fetch ${file}`);
+                return res.text();
+            })
+        );
 
-            // Build independent isolated card element
+        const markdownTexts = await Promise.all(fetchPromises);
+        
+        // Optimization: Use a DocumentFragment to minimize DOM reflows
+        const fragment = document.createDocumentFragment();
+
+        markdownTexts.forEach(markdownText => {
             const card = document.createElement('section');
             card.className = 'markdown-reading-view';
             card.innerHTML = parseMarkdown(markdownText);
-
-            container.appendChild(card);
-        } catch (error) {
-            console.error(`Error processing file: ${file}`, error);
-        }
-    }
-
-    // Trigger universal KaTeX mathematical post-render scan on container
-    if (typeof renderMathInElement === 'function') {
-        renderMathInElement(container, {
-            delimiters: [
-                { left: '$$', right: '$$', display: true },
-                { left: '$', right: '$', display: false },
-                { left: '\\(', right: '\\)', display: false }
-            ],
-            throwOnError: false
+            fragment.appendChild(card);
         });
+
+        container.appendChild(fragment);
+
+        // Trigger universal KaTeX mathematical post-render scan on container
+        if (typeof renderMathInElement === 'function') {
+            renderMathInElement(container, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+            });
+        }
+    } catch (error) {
+        console.error('Error processing chord files:', error);
     }
 }
 
@@ -116,7 +125,7 @@ function initLegendToggle() {
     if (isCollapsed) {
         legendCard.classList.add('is-collapsed');
         toggleBtn.innerHTML = '＋';
-        toggleBtn.setAttribute('aria-label', 'Expand Legend');
+        toggleBtn.setAttribute('aria-expanded', 'false');
     }
 
     toggleBtn.addEventListener('click', () => {
@@ -124,7 +133,7 @@ function initLegendToggle() {
         localStorage.setItem('legend-collapsed', nowCollapsed);
         
         toggleBtn.innerHTML = nowCollapsed ? '＋' : '─';
-        toggleBtn.setAttribute('aria-label', nowCollapsed ? 'Expand Legend' : 'Collapse Legend');
+        toggleBtn.setAttribute('aria-expanded', !nowCollapsed);
     });
 }
 

@@ -49,7 +49,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px; /* Strict uniform distance spacing between song cards */
+    gap: 48px;
     width: 100%;
     max-width: 750px;
 }
@@ -66,25 +66,23 @@ body {
 }
 
 /* ----------------------------------
-   FLOATING LEGEND (COMPACT & ELEGANT)
+   FLOATING LEGEND
 ----------------------------------- */
 .floating-legend {
     position: fixed;
     top: 60px;
     left: 40px;
-    width: 210px; /* Made the card narrower */
+    width: 210px;
     background-color: var(--card-bg);
     border: 1px solid var(--border-light);
-    border-radius: 12px; /* Slightly tighter radius for a smaller card */
-    padding: 16px; /* Tighter internal spacing */
+    border-radius: 12px;
+    padding: 16px;
     box-shadow: var(--shadow-small), var(--shadow-large);
     z-index: 1000;
     box-sizing: border-box;
-    
     max-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
-    
     transition: box-shadow 0.3s ease, max-height 0.3s ease, var(--transition-standard);
 }
 
@@ -95,9 +93,9 @@ body {
     flex-shrink: 0; 
 }
 
-.floating-legend h4 {
+.legend-header h4 {
     margin: 0;
-    font-size: 0.95em; /* Scaled down header text */
+    font-size: 0.95em;
     font-weight: 600;
     color: var(--heading-color);
 }
@@ -108,7 +106,7 @@ body {
     color: var(--text-muted);
     cursor: pointer;
     font-size: 0.9em;
-    width: 24px; /* Smaller toggle button */
+    width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
@@ -124,29 +122,18 @@ body {
 .legend-content {
     max-height: 1000px; 
     opacity: 1;
-    margin-top: 10px; /* Tighter gap below header */
+    margin-top: 10px;
     padding-top: 10px;
     border-top: 1px solid var(--border-light);
-    
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-    
+    scrollbar-color: rgba(136, 136, 136, 0.3) transparent;
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.2s ease, margin-top 0.3s ease;
 }
 
-/* Custom modern scrollbar (Elegant Transparent Gray Pill) */
-.legend-content {
-    /* ... keep your existing max-height, overflow, and transition rules ... */
-    
-    /* Standard syntax for Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(136, 136, 136, 0.3) transparent;
-}
-
-/* Chrome, Edge, and Safari scrollbar styling */
 .legend-content::-webkit-scrollbar { 
-    width: 6px; /* Slightly wider to show off the rounded rectangle shape */
+    width: 6px; 
 }
 
 .legend-content::-webkit-scrollbar-track { 
@@ -154,38 +141,37 @@ body {
 }
 
 .legend-content::-webkit-scrollbar-thumb {
-    background-color: rgba(136, 136, 136, 0.3); /* Grayish transparent */
-    border-radius: 10px; /* Makes it a fully rounded rectangle/pill */
+    background-color: rgba(136, 136, 136, 0.3);
+    border-radius: 10px;
     transition: background-color 0.2s ease;
 }
 
-/* Makes the scrollbar slightly darker/more visible when hovering over it */
 .legend-content::-webkit-scrollbar-thumb:hover {
     background-color: rgba(136, 136, 136, 0.5); 
 }
 
-.floating-legend ul {
-    list-style-type: none;
-    padding: 0;
+.floating-legend dl {
     margin: 0;
 }
 
-.floating-legend li {
-    margin-bottom: 8px; /* Tighter spacing between legend items */
-    font-size: 0.85em; /* Smaller, more elegant font size */
-    display: flex;
-    flex-direction: column;
+.floating-legend dt {
+    font-size: 0.85em;
+    margin-top: 8px;
 }
 
-.floating-legend li:last-child {
-    margin-bottom: 0;
+.floating-legend dt:first-child {
+    margin-top: 0;
 }
 
-/* ----------------------------------
-   COLLAPSED OVERRIDES (ADJUSTED FOR SMALLER SIZE)
------------------------------------ */
+.floating-legend dd {
+    font-size: 0.85em;
+    margin: 0 0 4px 0;
+    color: var(--text-muted);
+}
+
+/* Collapsed State */
 .floating-legend.is-collapsed {
-    max-height: 58px; /* Adjusted math to perfectly wrap the new 16px padded header */
+    max-height: 58px;
 }
 
 .floating-legend.is-collapsed .legend-content {
@@ -274,6 +260,7 @@ strong {
     font-size: 1.15em;
     letter-spacing: 0.5px;
     margin: 8px 0;
+    min-height: 1.7em; /* Prevents empty lines from collapsing */
 }
 
 .obsidian-comment {
