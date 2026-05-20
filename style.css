@@ -66,12 +66,11 @@ body {
 }
 
 /* ----------------------------------
-   FLOATING LEGEND
+   FLOATING DESKTOP PANELS (Legend & TOC)
 ----------------------------------- */
-.floating-legend {
+.floating-legend, .floating-toc {
     position: fixed;
     top: 60px;
-    left: 40px;
     width: 250px;
     background-color: var(--card-bg);
     border: 1px solid var(--border-light);
@@ -86,21 +85,24 @@ body {
     transition: box-shadow 0.3s ease, max-height 0.3s ease, var(--transition-standard);
 }
 
-.legend-header {
+.floating-legend { left: 40px; }
+.floating-toc { right: 40px; }
+
+.legend-header, .toc-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0; 
 }
 
-.legend-header h4 {
+.legend-header h4, .toc-header h4 {
     margin: 0;
     font-size: 0.95em;
     font-weight: 600;
     color: var(--heading-color);
 }
 
-.legend-toggle-btn {
+.legend-toggle-btn, .toc-toggle-btn {
     background: none;
     border: none;
     color: var(--text-muted);
@@ -115,12 +117,12 @@ body {
     transition: background-color 0.2s ease;
 }
 
-.legend-toggle-btn:hover {
+.legend-toggle-btn:hover, .toc-toggle-btn:hover {
     background-color: var(--border-light);
 }
 
-.legend-content {
-    max-height: 1000px; 
+.legend-content, .toc-content {
+    max-height: 1000px;
     opacity: 1;
     margin-top: 10px;
     padding-top: 10px;
@@ -132,49 +134,49 @@ body {
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.2s ease, margin-top 0.3s ease;
 }
 
-.legend-content::-webkit-scrollbar { 
-    width: 6px; 
+.toc-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.legend-content::-webkit-scrollbar-track { 
-    background: transparent; 
-}
-
-.legend-content::-webkit-scrollbar-thumb {
+.legend-content::-webkit-scrollbar, .toc-content::-webkit-scrollbar { width: 6px; }
+.legend-content::-webkit-scrollbar-track, .toc-content::-webkit-scrollbar-track { background: transparent; }
+.legend-content::-webkit-scrollbar-thumb, .toc-content::-webkit-scrollbar-thumb {
     background-color: rgba(136, 136, 136, 0.3);
     border-radius: 10px;
-    transition: background-color 0.2s ease;
 }
 
-.legend-content::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(136, 136, 136, 0.5); 
-}
+.floating-legend dl { margin: 0; }
+.floating-legend dt { font-size: 0.85em; margin-top: 8px; }
+.floating-legend dt:first-child { margin-top: 0; }
+.floating-legend dd { font-size: 0.85em; margin: 0 0 4px 0; color: var(--text-muted); }
 
-.floating-legend dl {
-    margin: 0;
-}
-
-.floating-legend dt {
-    font-size: 0.85em;
-    margin-top: 8px;
-}
-
-.floating-legend dt:first-child {
-    margin-top: 0;
-}
-
-.floating-legend dd {
-    font-size: 0.85em;
-    margin: 0 0 4px 0;
+.toc-content button {
+    background: none;
+    border: none;
+    text-align: left;
     color: var(--text-muted);
+    font-size: 0.9em;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-family: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Collapsed State */
-.floating-legend.is-collapsed {
-    max-height: 58px;
+.toc-content button:hover {
+    background-color: var(--page-bg);
+    color: var(--accent);
 }
 
-.floating-legend.is-collapsed .legend-content {
+/* Collapsed Panel States */
+.floating-legend.is-collapsed, .floating-toc.is-collapsed { max-height: 58px; }
+.floating-legend.is-collapsed .legend-content,
+.floating-toc.is-collapsed .toc-content {
     max-height: 0;
     opacity: 0;
     margin-top: 0;
@@ -185,11 +187,121 @@ body {
 }
 
 /* ----------------------------------
-   FLOATING THEME BUTTON
+   SMART MOBILE HEADER NAVIGATION BAR
+----------------------------------- */
+.mobile-navbar {
+    display: none; /* Desktop fallback toggle state */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-small);
+    z-index: 2000;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+}
+
+.mobile-navbar.nav-hidden {
+    transform: translateY(-100%);
+}
+
+.mobile-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    box-sizing: border-box;
+}
+
+.mobile-nav-divider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--border-light);
+}
+
+.mobile-nav-btn {
+    background: none;
+    border: none;
+    color: var(--heading-color);
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    height: 100%;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.mobile-nav-btn:hover { background-color: var(--page-bg); }
+.mobile-nav-btn .chevron { font-size: 0.7em; color: var(--text-muted); transition: transform 0.3s ease; }
+.mobile-nav-btn.is-active .chevron { transform: rotate(180deg); }
+
+/* Collapsible Dropdown Drawer Menu Layout */
+.mobile-dropdown-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background-color: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    box-sizing: border-box;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, padding 0.35s ease;
+}
+
+.mobile-dropdown-content.is-active {
+    max-height: 65vh;
+    opacity: 1;
+    padding: 8px 16px 16px 16px;
+    border-top: 1px solid var(--border-light);
+    overflow-y: auto;
+}
+
+/* Song Buttons within mobile dropdown */
+.mobile-dropdown-content button {
+    background: none;
+    border: none;
+    text-align: left;
+    color: var(--text-main);
+    font-size: 0.95em;
+    padding: 12px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-dropdown-content button:hover,
+.mobile-dropdown-content button:active {
+    background-color: var(--page-bg);
+    color: var(--accent);
+}
+
+/* Mobile Legend Custom Styling */
+.mobile-legend-content dl { margin: 0; padding: 0 12px; }
+.mobile-legend-content dt { font-size: 0.9em; margin-top: 12px; }
+.mobile-legend-content dt:first-child { margin-top: 4px; }
+.mobile-legend-content dd { 
+    font-size: 0.85em; 
+    margin: 0 0 8px 0; 
+    color: var(--text-muted); 
+    border-bottom: 1px solid var(--border-light); 
+    padding-bottom: 8px;
+}
+.mobile-legend-content dd:last-child { border-bottom: none; }
+
+/* ----------------------------------
+   FLOATING BOTTOM-RIGHT THEME BUTTON
 ----------------------------------- */
 .theme-btn {
     position: fixed;
-    bottom: 24px; /* Changed from top: 24px */
+    bottom: 24px;
     right: 24px;
     background-color: var(--card-bg);
     border: 1px solid var(--border-light);
@@ -213,110 +325,7 @@ body {
 }
 
 /* ----------------------------------
-   FLOATING NAVIGATION (TOC)
------------------------------------ */
-.floating-toc {
-    position: fixed;
-    top: 60px;
-    right: 40px; /* Positions it opposite to the legend */
-    width: 250px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: var(--shadow-small), var(--shadow-large);
-    z-index: 1000;
-    box-sizing: border-box;
-    max-height: calc(100vh - 120px);
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.3s ease, max-height 0.3s ease, var(--transition-standard);
-}
-
-.toc-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0; 
-}
-
-.toc-header h4 {
-    margin: 0;
-    font-size: 0.95em;
-    font-weight: 600;
-    color: var(--heading-color);
-}
-
-.toc-toggle-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-size: 0.9em;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-}
-
-.toc-toggle-btn:hover {
-    background-color: var(--border-light);
-}
-
-.toc-content {
-    max-height: 1000px; 
-    opacity: 1;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border-light);
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(136, 136, 136, 0.3) transparent;
-    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.2s ease, margin-top 0.3s ease;
-}
-
-.toc-content button {
-    background: none;
-    border: none;
-    text-align: left;
-    color: var(--text-muted);
-    font-size: 0.9em;
-    cursor: pointer;
-    padding: 6px 8px;
-    border-radius: 6px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    font-family: inherit;
-}
-
-.toc-content button:hover {
-    background-color: var(--page-bg);
-    color: var(--accent);
-}
-
-/* Collapsed State for TOC */
-.floating-toc.is-collapsed {
-    max-height: 58px;
-}
-
-.floating-toc.is-collapsed .toc-content {
-    max-height: 0;
-    opacity: 0;
-    margin-top: 0;
-    padding-top: 0;
-    border-top-color: transparent;
-    overflow: hidden; 
-    pointer-events: none;
-}
-
-/* ----------------------------------
-   TYPOGRAPHY & HEADINGS
+   TYPOGRAPHY & MARKDOWN STYLES
 ----------------------------------- */
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
@@ -337,12 +346,7 @@ h1 {
     padding-bottom: 0.6em;
 }
 
-h2 {
-    font-size: 1.8em;
-    border-bottom: 1px solid var(--border-light);
-    padding-bottom: 0.3em;
-}
-
+h2 { font-size: 1.8em; border-bottom: 1px solid var(--border-light); padding-bottom: 0.3em; }
 h3 { font-size: 1.5em; }
 h4 { font-size: 1.25em; }
 h5 { font-size: 1.1em; }
@@ -363,7 +367,7 @@ strong {
     font-size: 1.15em;
     letter-spacing: 0.5px;
     margin: 8px 0;
-    min-height: 1.7em; /* Prevents empty lines from collapsing */
+    min-height: 1.7em;
 }
 
 .obsidian-comment {
@@ -384,43 +388,37 @@ em { font-style: italic; }
 }
 
 /* ----------------------------------
-   MOBILE RESPONSIVENESS & RE-GRIDDING
+   MOBILE RESPONSIVENESS
 ----------------------------------- */
 @media (max-width: 1200px) {
+    .mobile-navbar {
+        display: flex; /* Turn on mobile nav */
+    }
     body {
         flex-direction: column;
         align-items: center;
-        /* Reduced top padding since floating cards are now inline */
-        padding: 40px 20px 40px 20px; 
+        padding: 88px 20px 40px 20px; 
     }
-    .floating-legend, .floating-toc {
-        position: relative;
-        top: auto;
-        left: auto;
-        right: auto;
-        width: 100%;
-        max-width: 750px;
-        margin-bottom: 16px; /* Spacing between the menu cards */
+    /* Hide desktop floating menus because they are now in the mobile header */
+    #legend-card, #toc-card {
+        display: none; 
     }
 }
 
 @media (max-width: 768px) {
     body { 
-        /* Added extra bottom padding so you can scroll past the floating theme button */
-        padding: 24px 12px 100px 12px; 
+        padding: 80px 12px 100px 12px; 
     }
     .markdown-reading-view { 
-        padding: 32px 20px; /* Better text breathing room for smaller screens */
+        padding: 32px 20px; 
         border-radius: 12px; 
     }
     .cards-container { 
         gap: 24px; 
     }
-    /* Moves the theme button to the bottom right on mobile to stop text overlapping */
     .theme-btn { 
-        top: auto; 
-        bottom: 24px; 
-        right: 24px; 
+        bottom: 16px; 
+        right: 16px; 
         box-shadow: var(--shadow-large);
     }
 }
