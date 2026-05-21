@@ -200,6 +200,7 @@ function initTOCToggle() {
 // 6. SMART MOBILE SCROLL & DRAWER CONTROL
 // ==========================================
 let lastScrollY = window.scrollY;
+let hideTimer = null;
 
 function closeAllMobileDropdowns() {
     const songsToggle = document.getElementById('mobile-songs-toggle');
@@ -248,24 +249,33 @@ function initMobileNavbar() {
         });
     }
 
-    // // Handle show-on-scroll-up / hide-on-scroll-down
-    // window.addEventListener('scroll', () => {
-    //     const currentScrollY = window.scrollY;
+    // Handle show-on-scroll-up / hide-on-scroll-down
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
         
-    //     // Prevent action on iOS elastic scroll bounce
-    //     if (currentScrollY <= 0) return;
+        // Prevent action on iOS elastic scroll bounce
+        if (currentScrollY <= 0) return;
 
-    //     if (currentScrollY > lastScrollY && currentScrollY > 60) {
-    //         // Scrolling Down -> Hide Menu Bar & Close the drawer
-    //         navbar.classList.add('nav-hidden');
-    //         closeAllMobileDropdowns();
-    //     } else if (currentScrollY < lastScrollY) {
-    //         // Scrolling Up -> Show Menu Bar
-    //         navbar.classList.remove('nav-hidden');
-    //     }
+        if (currentScrollY > lastScrollY && currentScrollY > 60) {
+            // SCROLLING DOWN -> Start a timer to delay the hide
+            if (!hideTimer) { 
+                hideTimer = setTimeout(() => {
+                    navbar.classList.add('nav-hidden');
+                    closeAllMobileDropdowns();
+                    hideTimer = null; // Reset timer after it fires
+                }, 600); // <--- DELAY IN MILLISECONDS (600 = 0.6 seconds)
+            }
+        } else if (currentScrollY < lastScrollY) {
+            // SCROLLING UP -> Cancel the hide timer instantly and show the menu
+            if (hideTimer) {
+                clearTimeout(hideTimer);
+                hideTimer = null;
+            }
+            navbar.classList.remove('nav-hidden');
+        }
         
-    //     lastScrollY = currentScrollY;
-    // }, { passive: true });
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 
     // Dismiss menu when tapping outside anywhere on the document
     document.addEventListener('click', (e) => {
