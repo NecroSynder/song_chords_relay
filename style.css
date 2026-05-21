@@ -1,37 +1,62 @@
 /* ----------------------------------
-   THEME VARIABLES
+   THEME VARIABLES (Aesthetic & Colorful)
 ----------------------------------- */
 :root {
-    --page-bg: #f4f5f8;
-    --card-bg: #ffffff;
-    --text-main: #2d3748;
-    --text-muted: #718096;
-    --accent: #6b46c1;
-    --border-light: rgba(0, 0, 0, 0.06);
-    --shadow-small: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
-    --shadow-large: 0 20px 40px -5px rgba(0, 0, 0, 0.08);
-    --heading-color: #1a202c;
+    /* Light Mode: Vibrant pastel gradient */
+    --page-bg: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    
+    /* Change 0.5 down to 0.15 for high transparency */
+    --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 100%);
+    
+    --text-main: #2c3e50;
+    --text-muted: #6b7a8a;
+    --accent: #d845ab; /* Vibrant magenta/pink */
+    
+    /* Slightly more opaque border to frame the translucent glass */
+    --border-light: rgba(255, 255, 255, 0.4);
+    
+    --shadow-small: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+    --shadow-large: 0 16px 40px -5px rgba(31, 38, 135, 0.15);
+    --heading-color: #1e272e;
     --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --transition-standard: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    --transition-standard: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 [data-theme="dark"] {
-    --page-bg: #0d0f12;
-    --card-bg: #1a1d24;
-    --text-main: #e2e4e9;
-    --text-muted: #8b949e;
-    --accent: #a382e2;
-    --border-light: rgba(255, 255, 255, 0.06);
-    --shadow-small: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-    --shadow-large: 0 20px 40px -5px rgba(0, 0, 0, 0.5);
-    --heading-color: #ffffff;
+    /* Dark Mode: Midnight Espresso Palette (#000000, #1f150c, #412d15, #e1dcc9) */
+    
+    /* Pitch black to deep espresso gradient for the background */
+    --page-bg: linear-gradient(135deg, #000000 0%, #1f150c 100%); 
+    
+    /* Uses the mocha brown (#412d15) with transparency for the warm glass card effect */
+    --card-bg: linear-gradient(135deg, rgba(65, 45, 21, 0.4) 0%, rgba(65, 45, 21, 0.1) 100%);
+    
+    /* A slightly softened version of the beige to make long paragraphs easy to read */
+    --text-main: #c9c3b1;
+    
+    /* A muted, earthy brownish-gray for secondary text */
+    --text-muted: #8b7d6b; 
+    
+    /* Uses the pure palette beige (#e1dcc9) for highlights, bold text, and accents */
+    --accent: #e1dcc9; 
+    
+    /* Uses a faint tint of the beige for illuminated, elegant card borders */
+    --border-light: rgba(225, 220, 201, 0.25);
+    
+    /* Darker, richer shadows to blend with the pitch-black background */
+    --shadow-small: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+    --shadow-large: 0 20px 40px -5px rgba(0, 0, 0, 0.9);
+    
+    /* Uses the pure palette beige for crisp, warm headings */
+    --heading-color: #e1dcc9; 
 }
 
 /* ----------------------------------
    LAYOUT & STRUCTURE
 ----------------------------------- */
 body {
-    background-color: var(--page-bg);
+    background: var(--page-bg); /* Changed to support gradients */
+    background-attachment: fixed; /* Keeps gradient locked while scrolling */
     color: var(--text-main);
     font-family: var(--font-ui);
     line-height: 1.4;
@@ -55,7 +80,9 @@ body {
 }
 
 .markdown-reading-view {
-    background-color: var(--card-bg);
+    background: var(--card-bg);
+    backdrop-filter: blur(24px); 
+    -webkit-backdrop-filter: blur(24px);
     width: 100%;
     box-sizing: border-box;
     padding: 60px 80px;
@@ -72,7 +99,9 @@ body {
     position: fixed;
     top: 60px;
     width: 250px;
-    background-color: var(--card-bg);
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border-light);
     border-radius: 12px;
     padding: 16px;
@@ -135,14 +164,15 @@ body {
 }
 
 .toc-content {
-    display: block; /* Modified to block for uniform transition */
+    display: block; 
 }
 
 .legend-content::-webkit-scrollbar, .toc-content::-webkit-scrollbar { width: 6px; }
 .legend-content::-webkit-scrollbar-track, .toc-content::-webkit-scrollbar-track { background: transparent; }
 .legend-content::-webkit-scrollbar-thumb, .toc-content::-webkit-scrollbar-thumb {
-    background-color: rgba(136, 136, 136, 0.3);
+    background-color: var(--accent);
     border-radius: 10px;
+    opacity: 0.5;
 }
 
 .floating-legend dl { margin: 0; }
@@ -151,9 +181,9 @@ body {
 .floating-legend dd { font-size: 0.85em; margin: 0 0 4px 0; color: var(--text-muted); }
 
 .toc-content button {
-    display: block;       /* Added to force block stacking */
-    width: 100%;          /* Added to take full container width */
-    margin-bottom: 4px;   /* Added to replace the flex gap */
+    display: block;
+    width: 100%;
+    margin-bottom: 4px;
     background: none;
     border: none;
     text-align: left;
@@ -170,12 +200,13 @@ body {
 }
 
 .toc-content button:last-child {
-    margin-bottom: 0;     /* Added so the last button doesn't add extra space */
+    margin-bottom: 0; 
 }
 
 .toc-content button:hover {
-    background-color: var(--page-bg);
+    background-color: var(--border-light);
     color: var(--accent);
+    font-weight: 600;
 }
 
 /* Collapsed Panel States */
@@ -195,12 +226,14 @@ body {
    SMART MOBILE HEADER NAVIGATION BAR
 ----------------------------------- */
 .mobile-navbar {
-    display: none; /* Desktop fallback toggle state */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--card-bg);
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-light);
     box-shadow: var(--shadow-small);
     z-index: 2000;
@@ -243,16 +276,16 @@ body {
     transition: background-color 0.2s ease;
 }
 
-.mobile-nav-btn:hover { background-color: var(--page-bg); }
+.mobile-nav-btn:hover { background-color: var(--border-light); }
 .mobile-nav-btn .chevron { font-size: 0.7em; color: var(--text-muted); transition: transform 0.3s ease; }
-.mobile-nav-btn.is-active .chevron { transform: rotate(180deg); }
+.mobile-nav-btn.is-active .chevron { transform: rotate(180deg); color: var(--accent); }
 
 /* Collapsible Dropdown Drawer Menu Layout */
 .mobile-dropdown-content {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    background-color: var(--card-bg);
+    background: transparent; /* Inherits the blur from the navbar */
     display: flex;
     flex-direction: column;
     padding: 0 16px;
@@ -284,7 +317,7 @@ body {
 
 .mobile-dropdown-content button:hover,
 .mobile-dropdown-content button:active {
-    background-color: var(--page-bg);
+    background-color: var(--border-light);
     color: var(--accent);
 }
 
@@ -308,7 +341,9 @@ body {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background-color: var(--card-bg);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--border-light);
     color: var(--text-main);
     border-radius: 50%;
@@ -327,6 +362,7 @@ body {
 .theme-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-large);
+    border-color: var(--accent);
 }
 
 /* ----------------------------------
@@ -335,8 +371,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
     font-weight: 600;
-    margin-top: 1.2em; /* Reduced from 1.5em */
-    margin-bottom: 0.3em; /* Reduced from 0.5em */
+    margin-top: 1.2em; 
+    margin-bottom: 0.3em; 
     transition: color 0.3s ease;
 }
 
@@ -346,8 +382,10 @@ h1 {
     letter-spacing: -0.5px;
     margin: 0;
     text-align: center;
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 2px solid var(--accent); /* Replaced light border with accent pop */
     padding-bottom: 0.6em;
+    display: inline-block;
+    width: 100%;
 }
 
 h2 { font-size: 1.8em; border-bottom: 1px solid var(--border-light); padding-bottom: 0.3em; }
@@ -360,8 +398,8 @@ strong {
     color: var(--accent);
     font-weight: 600;
     display: inline-block;
-    margin-top: 1.2em; /* Drastically reduced from 1.8em */
-    margin-bottom: 0.2em; /* Reduced from 0.4em */
+    margin-top: 1.2em; 
+    margin-bottom: 0.2em; 
     letter-spacing: 0.5px;
     text-transform: uppercase;
     font-size: 0.9em;
@@ -396,14 +434,13 @@ em { font-style: italic; }
 ----------------------------------- */
 @media (max-width: 1200px) {
     .mobile-navbar {
-        display: flex; /* Turn on mobile nav */
+        display: flex; 
     }
     body {
         flex-direction: column;
         align-items: center;
         padding: 88px 20px 40px 20px; 
     }
-    /* Hide desktop floating menus because they are now in the mobile header */
     #legend-card, #toc-card {
         display: none; 
     }
