@@ -89,7 +89,7 @@ REPEAT TAG
 REPEAT VAMP 2 2x
 ~Alt. Chords~
 1
-*experimental:* 
+~*Experimental*~ 
 *Bass 7$b$ then pass to (octave 2 7$b$ 6) || the rest: 7$b^{\text{add9}}$/2 then 4$^2$/6*
 4$^\text{m6}$/6$b$ *~(passing chord to end: 1 4$^\text{m6}$)~*
 
