@@ -159,7 +159,9 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
 function initLegendToggle() {
     const legendCard = document.getElementById('legend-card');
     const toggleBtn = document.getElementById('legend-toggle');
-    if (!legendCard || !toggleBtn) return;
+    const legendHeader = legendCard.querySelector('.legend-header'); // Target the header
+    
+    if (!legendCard || !toggleBtn || !legendHeader) return;
 
     const isCollapsed = localStorage.getItem('legend-collapsed') === 'true';
     if (isCollapsed) {
@@ -168,7 +170,8 @@ function initLegendToggle() {
         toggleBtn.setAttribute('aria-expanded', 'false');
     }
 
-    toggleBtn.addEventListener('click', () => {
+    // Apply the click listener to the entire header
+    legendHeader.addEventListener('click', () => {
         const nowCollapsed = legendCard.classList.toggle('is-collapsed');
         localStorage.setItem('legend-collapsed', nowCollapsed);
         toggleBtn.innerHTML = nowCollapsed ? '＋' : '─';
@@ -179,7 +182,9 @@ function initLegendToggle() {
 function initTOCToggle() {
     const tocCard = document.getElementById('toc-card');
     const toggleBtn = document.getElementById('toc-toggle');
-    if (!tocCard || !toggleBtn) return;
+    const tocHeader = tocCard.querySelector('.toc-header'); // Target the header
+    
+    if (!tocCard || !toggleBtn || !tocHeader) return;
 
     const isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
     if (isCollapsed) {
@@ -188,7 +193,8 @@ function initTOCToggle() {
         toggleBtn.setAttribute('aria-expanded', 'false');
     }
 
-    toggleBtn.addEventListener('click', () => {
+    // Apply the click listener to the entire header
+    tocHeader.addEventListener('click', () => {
         const nowCollapsed = tocCard.classList.toggle('is-collapsed');
         localStorage.setItem('toc-collapsed', nowCollapsed);
         toggleBtn.innerHTML = nowCollapsed ? '＋' : '─';

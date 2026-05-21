@@ -132,6 +132,9 @@ body::before {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0; 
+    cursor: pointer; /* Makes the entire header show a pointer */
+    user-select: none; /* Prevents text highlighting on rapid clicks */
+    -webkit-user-select: none; 
 }
 
 .legend-header h4, .toc-header h4 {
