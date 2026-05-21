@@ -55,8 +55,6 @@
    LAYOUT & STRUCTURE
 ----------------------------------- */
 body {
-    background: var(--page-bg); /* Changed to support gradients */
-    background-attachment: fixed; /* Keeps gradient locked while scrolling */
     color: var(--text-main);
     font-family: var(--font-ui);
     line-height: 1.4;
@@ -68,6 +66,18 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
     transition: var(--transition-standard);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--page-bg);
+    z-index: -1; /* Ensures the background stays behind your cards */
+    transition: var(--transition-standard); /* Keeps your smooth dark/light mode toggle */
 }
 
 .cards-container {
