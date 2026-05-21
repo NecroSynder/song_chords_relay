@@ -135,9 +135,7 @@ body {
 }
 
 .toc-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: block; /* Modified to block for uniform transition */
 }
 
 .legend-content::-webkit-scrollbar, .toc-content::-webkit-scrollbar { width: 6px; }
@@ -153,6 +151,9 @@ body {
 .floating-legend dd { font-size: 0.85em; margin: 0 0 4px 0; color: var(--text-muted); }
 
 .toc-content button {
+    display: block;       /* Added to force block stacking */
+    width: 100%;          /* Added to take full container width */
+    margin-bottom: 4px;   /* Added to replace the flex gap */
     background: none;
     border: none;
     text-align: left;
@@ -166,6 +167,10 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toc-content button:last-child {
+    margin-bottom: 0;     /* Added so the last button doesn't add extra space */
 }
 
 .toc-content button:hover {
