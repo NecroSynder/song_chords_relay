@@ -29,9 +29,8 @@
 **Verse 3**
 1 4/1
 1 4/1
-6 5$^{\text{(add4)}}$
-4$^2$ 1
-5/7
+6 5$^{\text{(add4)}}$ 4$^2$ 
+1 5/7
 
 **Chorus 1**
 1 (4/1 1)  | 1 1/7 4
@@ -60,8 +59,7 @@
 REPEAT REFRAIN/VAMP 1
 
 **Tag (Who am I to deny ...)**
-6 5
-4$^2$ 4$^\text{m6}$    *~(one last run change from 4$^\text{m6}$ to 2)~*
+(6 5 4$^2$) 4$^\text{m6}$    *~(one last run change from 4$^\text{m6}$ to 2)~*
 REPEAT TAG
 
 **Breakdown Chorus**
@@ -90,7 +88,7 @@ REPEAT VAMP 2 2x
 ~Alt. Chords~
 1
 ~*Experimental*~ 
-*Bass 7$b$ then pass to (octave 2 7$b$ 6) || the rest: 7$b^{\text{add9}}$/2 then 4$^2$/6*
+*Bass: 7$b$ then pass to (octave 2 7$b$ 6) || the rest: 7$b^{\text{add9}}$/2 then 4$^2$/6*
 4$^\text{m6}$/6$b$ *~(passing chord to end: 1 4$^\text{m6}$)~*
 
 **Tag**
