@@ -5,8 +5,8 @@
     /* Light Mode: Vibrant pastel gradient */
     --page-bg: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
     
-    /* Change 0.5 down to 0.15 for high transparency */
-    --card-bg: rgba(255, 255, 255, 0.15);
+    /* Light Mode Diagonal Shine */
+    --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 100%);
     
     --text-main: #2c3e50;
     --text-muted: #6b7a8a;
@@ -28,8 +28,8 @@
     /* Pitch black to deep espresso gradient for the background */
     --page-bg: linear-gradient(135deg, #000000 0%, #1f150c 100%); 
     
-    /* Uses the mocha brown (#412d15) with transparency for the warm glass card effect */
-    --card-bg: rgba(65, 45, 21, 0.15);
+    /* Dark Mode Diagonal Shine (Using the Espresso brown as an example) */
+    --card-bg: linear-gradient(135deg, rgba(65, 45, 21, 0.4) 0%, rgba(65, 45, 21, 0.1) 100%);
     
     /* A slightly softened version of the beige to make long paragraphs easy to read */
     --text-main: #c9c3b1;
