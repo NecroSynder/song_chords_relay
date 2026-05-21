@@ -44,7 +44,7 @@ REPEAT BRIDGE 1
 6$^7$ 5$^{(\text{add4})}$ 4$^2$ ~(3x)~
 4$^2$ 5$^{(\text{add4})}$ 1 1
 
-Build
+**Build**
 1
 REPEAT CHORUS
 TURNAROUND

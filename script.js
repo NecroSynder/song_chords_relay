@@ -16,8 +16,7 @@ const MARKDOWN_RULES = [
     { regex: /~\*(.*?)\~\*/g, replacement: '<span class="obsidian-comment"><em>$1</em></span>' },
     { regex: /\*\*(.*?)\*\*/g, replacement: '<strong>$1</strong>' },
     { regex: /\*(.*?)\*/g, replacement: '<em>$1</em>' },
-    { regex: /~(.*?)~/g, replacement: '<span class="obsidian-comment">$1</span>' },
-    { regex: /([1-7][b#]?)\^(\{.*?\}|\\text\{.*?\}|[a-zA-Z0-9]+)/g, replacement: '\\($1^$2\\)' }
+    { regex: /~(.*?)~/g, replacement: '<span class="obsidian-comment">$1</span>' }
 ];
 
 function parseMarkdown(text) {

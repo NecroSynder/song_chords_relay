@@ -34,7 +34,7 @@ body {
     background-color: var(--page-bg);
     color: var(--text-main);
     font-family: var(--font-ui);
-    line-height: 1.7;
+    line-height: 1.4;
     margin: 0;
     padding: 60px 40px;
     display: flex;
@@ -330,8 +330,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
     font-weight: 600;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    margin-top: 1.2em; /* Reduced from 1.5em */
+    margin-bottom: 0.3em; /* Reduced from 0.5em */
     transition: color 0.3s ease;
 }
 
@@ -339,8 +339,7 @@ h1 {
     font-size: 2.4em;
     font-weight: 700;
     letter-spacing: -0.5px;
-    margin-top: 0;
-    margin-bottom: 1em;
+    margin: 0;
     text-align: center;
     border-bottom: 1px solid var(--border-light);
     padding-bottom: 0.6em;
@@ -356,8 +355,8 @@ strong {
     color: var(--accent);
     font-weight: 600;
     display: inline-block;
-    margin-top: 1.8em;
-    margin-bottom: 0.4em;
+    margin-top: 1.2em; /* Drastically reduced from 1.8em */
+    margin-bottom: 0.2em; /* Reduced from 0.4em */
     letter-spacing: 0.5px;
     text-transform: uppercase;
     font-size: 0.9em;
