@@ -3,6 +3,8 @@
 // ==========================================
 
 const chordFiles = [
+    'chords/the-joy.md',
+    'chords/tribes.md',
     'chords/more-than-able.md',
     'chords/sing-the-name.md',
     // Add additional markdown chord files here
