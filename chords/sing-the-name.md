@@ -1,4 +1,4 @@
-# Sing the Name
+# Sing the Name | The Belonging Co.
 
 **Intro**
 1--- 4$^2$--- 1/3--- 4$^2$---
