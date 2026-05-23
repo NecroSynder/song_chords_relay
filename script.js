@@ -23,9 +23,6 @@ const MARKDOWN_RULES = [
     { regex: /~\*(.*?)\*~/g, replacement: '<span class="obsidian-comment"><em>$1</em></span>' },
 
     // --- 2. STANDARD RULES ---
-    // Catches ~~comment~~ (Standard non-italic comment)
-    { regex: /~~(.*?)~~/g, replacement: '<span class="obsidian-comment">$1</span>' },
-    
     // Catches **bold**
     { regex: /\*\*(.*?)\*\*/g, replacement: '<strong>$1</strong>' },
     
