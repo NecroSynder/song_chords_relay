@@ -185,6 +185,7 @@ function buildNavigation() {
 function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
     const themeToggleBtn = document.getElementById(toggleBtnId);
     const themeIcon = document.getElementById(iconId);
+    const themeMeta = document.getElementById('theme-color-meta'); // Grab the meta tag
     
     if (!themeToggleBtn || !themeIcon) return;
 
@@ -192,6 +193,13 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem(storageKey, theme);
         themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        
+        // --- Sync Mobile Navigation Bar Color ---
+        if (themeMeta) {
+            // Replace '#1e272e' with the exact background color of your dark theme
+            const metaColor = theme === 'light' ? '#fbc2eb' : '#1e272e';
+            themeMeta.setAttribute('content', metaColor);
+        }
     };
 
     const savedTheme = localStorage.getItem(storageKey) || 'light';
