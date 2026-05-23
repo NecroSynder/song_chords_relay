@@ -10,7 +10,7 @@
 1
 6 4 1
 
-Pre-chorus
+**Pre-chorus**
 4 5 1
 4 5---
 
