@@ -47,7 +47,7 @@ INTERLUDE
 1 2 4
 6 5 1/3 2
 6 5 1/3 2
-6 5 1/3 2 ~(Alt. 6 7 1/3 2)~
+6 5 1/3 2 ~(Change 5 $\rightarrow$ 7)~
 1 2
 
 **Interlude** 
