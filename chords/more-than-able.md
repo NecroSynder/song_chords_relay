@@ -58,7 +58,7 @@
 (6 5 4$^2$) 4$^\text{m6}$
 REPEAT ONCE
 *~(one time go to Alt. Chords Below)~*
-*Alt. Chords*
+Alt. Chords
 5--- 5---
 3 7
 (6 5 4$^2$) 4$^\text{m6}$
@@ -90,7 +90,7 @@ REPEAT TAG
 4$^2$/6
 4$^\text{m6}$/6$b$ *~(passing chord optional: 2)~* 
 REPEAT VAMP 2 2x
-~Alt. Chords~
+Alt. Chords
 1
 ~*Experimental*~ 
 *Bass: 7$b$ then pass to (octave 2 7$b$ 6) || the rest: 7$b^{\text{add9}}$/2 then 4$^2$/6*
