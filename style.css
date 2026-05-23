@@ -447,9 +447,8 @@ strong {
 
 .obsidian-comment {
     color: var(--text-muted);
-    /* font-style: italic; */
-    font-style: normal;
     font-size: 0.95em;
+    /* font-style line has been completely removed */
 }
 
 em { font-style: italic; }
