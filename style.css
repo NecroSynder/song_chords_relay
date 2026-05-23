@@ -488,7 +488,8 @@ em { font-style: italic; }
         padding: 80px 12px 100px 12px; 
     }
     .markdown-reading-view { 
-        padding: 32px 20px; 
+        font-size: 19px;
+        padding: 24px 16px; 
         border-radius: 12px; 
     }
     .cards-container { 
