@@ -54,9 +54,7 @@
 /* ----------------------------------
    LAYOUT & STRUCTURE
 ----------------------------------- */
-/* 1. Kills the Android scroll glow/fade */
 body {
-    overscroll-behavior: none; 
     color: var(--text-main);
     font-family: var(--font-ui);
     line-height: 1.4;
@@ -65,23 +63,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* You can also change this one to 100dvh just to be safe */
-    min-height: 100dvh; 
+    min-height: 100vh;
     box-sizing: border-box;
     transition: var(--transition-standard);
 }
 
-/* 2. Fixes the background resizing when Chrome's Tab Group bar appears */
 body::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100dvh; /* <-- CHANGE THIS FROM 100vh TO 100dvh */
+    height: 100vh;
     background: var(--page-bg);
-    z-index: -1; 
-    transition: var(--transition-standard); 
+    z-index: -1; /* Ensures the background stays behind your cards */
+    transition: var(--transition-standard); /* Keeps your smooth dark/light mode toggle */
 }
 
 .cards-container {
