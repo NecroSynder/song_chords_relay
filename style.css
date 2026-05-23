@@ -222,6 +222,16 @@ body::before {
     font-weight: 600;
 }
 
+/* Active State for Desktop TOC */
+.toc-content button.active {
+    border-left: 3px solid var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+    /* background-color: var(--border-light); */
+    border-radius: 0 6px 6px 0; /* Flattens the left corners to make the border flush */
+    padding-left: 12px; /* Pushes the text slightly to the right for extra emphasis */
+}
+
 /* Collapsed Panel States */
 .floating-legend.is-collapsed, .floating-toc.is-collapsed { max-height: 58px; }
 .floating-legend.is-collapsed .legend-content,
@@ -332,6 +342,16 @@ body::before {
 .mobile-dropdown-content button:active {
     background-color: var(--border-light);
     color: var(--accent);
+}
+
+/* Active State for Mobile Song List */
+.mobile-dropdown-content button.active {
+    border-left: 3px solid var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+    /* background-color: var(--border-light); */
+    border-radius: 0 8px 8px 0;
+    padding-left: 16px;
 }
 
 /* Mobile Legend Custom Styling */

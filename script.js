@@ -131,6 +131,39 @@ function buildNavigation() {
             mobileSongsContent.appendChild(mobileBtn);
         }
     });
+
+    // --- 3. ScrollSpy (Active Highlight Observer) ---
+    const tocButtons = document.querySelectorAll('#toc-content button');
+    const mobileButtons = document.querySelectorAll('#mobile-songs-content button');
+    
+    // Observer options to trigger when a card hits the upper portion of the screen
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px', 
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Find which card is currently intersecting the view
+                const activeIndex = Array.from(cards).indexOf(entry.target);
+                
+                // Toggle active class on Desktop TOC
+                tocButtons.forEach((btn, i) => {
+                    btn.classList.toggle('active', i === activeIndex);
+                });
+                
+                // Toggle active class on Mobile TOC
+                mobileButtons.forEach((btn, i) => {
+                    btn.classList.toggle('active', i === activeIndex);
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Attach the observer to every chord card
+    cards.forEach(card => observer.observe(card));
 }
 
 // ==========================================
