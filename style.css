@@ -55,6 +55,7 @@
    LAYOUT & STRUCTURE
 ----------------------------------- */
 html, body {
+    overscroll-behavior: none; /* <-- ADD THIS LINE HERE */
     color: var(--text-main);
     font-family: var(--font-ui);
     line-height: 1.4;
