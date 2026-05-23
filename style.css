@@ -305,7 +305,11 @@ body::before {
     transition: background-color 0.2s ease;
 }
 
-.mobile-nav-btn:hover { background-color: var(--border-light); }
+@media (hover: hover) {
+    .mobile-nav-btn:hover { 
+        background-color: var(--border-light); 
+    }
+}
 .mobile-nav-btn .chevron { font-size: 0.7em; color: var(--text-muted); transition: transform 0.3s ease; }
 .mobile-nav-btn.is-active .chevron { transform: rotate(180deg); color: var(--accent); }
 
@@ -344,10 +348,16 @@ body::before {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.mobile-dropdown-content button:hover,
 .mobile-dropdown-content button:active {
     background-color: var(--border-light);
     color: var(--accent);
+}
+
+@media (hover: hover) {
+    .mobile-dropdown-content button:hover {
+        background-color: var(--border-light);
+        color: var(--accent);
+    }
 }
 
 /* Active State for Mobile Song List */

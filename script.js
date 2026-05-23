@@ -320,7 +320,7 @@ function initMobileNavbar() {
             // SCROLLING DOWN -> Start a timer to delay the hide
             if (!hideTimer) { 
                 hideTimer = setTimeout(() => {
-                    navbar.classList.add('nav-hidden');
+                    // navbar.classList.add('nav-hidden');
                     closeAllMobileDropdowns();
                     hideTimer = null; 
                 }, 600); 
