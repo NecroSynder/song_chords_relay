@@ -56,7 +56,7 @@
 1 4$^2$/1
 1/3 5
 (6 5 4$^2$) 4$^\text{m6}$
-REPEAT
+REPEAT ONCE
 *~(one time go to Alt. Chords Below)~*
 *Alt. Chords*
 5--- 5---
