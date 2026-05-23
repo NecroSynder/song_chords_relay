@@ -4,6 +4,8 @@
 :root {
     /* Light Mode: Vibrant pastel gradient */
     --page-bg: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    --bg-fallback: #a6c1ee; /* Matches the bottom of the light gradient */
+    color-scheme: light; /* Tells the browser OS to use light scrollbars/UI */
     
     /* Light Mode Diagonal Shine */
     --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 100%);
@@ -27,6 +29,8 @@
     
     /* Pitch black to deep espresso gradient for the background */
     --page-bg: linear-gradient(135deg, #000000 0%, #1f150c 100%); 
+    --bg-fallback: #1f150c; /* Matches the bottom of the dark gradient */
+    color-scheme: dark; /* Tells the browser OS to use dark scrollbars/UI */
     
     /* Dark Mode Diagonal Shine (Using the Espresso brown as an example) */
     --card-bg: linear-gradient(135deg, rgba(65, 45, 21, 0.4) 0%, rgba(65, 45, 21, 0.1) 100%);
@@ -54,6 +58,11 @@
 /* ----------------------------------
    LAYOUT & STRUCTURE
 ----------------------------------- */
+html {
+    background-color: var(--bg-fallback);
+    transition: background-color 0.3s ease;
+}
+
 body {
     color: var(--text-main);
     font-family: var(--font-ui);
@@ -71,13 +80,11 @@ body {
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    /* inset replaces top/left/width/height and adds a 150px bleed area */
+    inset: -150px; 
     background: var(--page-bg);
-    z-index: -1; /* Ensures the background stays behind your cards */
-    transition: var(--transition-standard); /* Keeps your smooth dark/light mode toggle */
+    z-index: -1; 
+    transition: var(--transition-standard); 
 }
 
 .cards-container {
@@ -132,8 +139,8 @@ body::before {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0; 
-    cursor: pointer; /* Makes the entire header show a pointer */
-    user-select: none; /* Prevents text highlighting on rapid clicks */
+    cursor: pointer; 
+    user-select: none; 
     -webkit-user-select: none; 
 }
 
@@ -227,9 +234,8 @@ body::before {
     border-left: 3px solid var(--accent);
     color: var(--accent);
     font-weight: 600;
-    /* background-color: var(--border-light); */
-    border-radius: 0 6px 6px 0; /* Flattens the left corners to make the border flush */
-    padding-left: 12px; /* Pushes the text slightly to the right for extra emphasis */
+    border-radius: 0 6px 6px 0; 
+    padding-left: 12px; 
 }
 
 /* Collapsed Panel States */
@@ -308,7 +314,7 @@ body::before {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    background: transparent; /* Inherits the blur from the navbar */
+    background: transparent; 
     display: flex;
     flex-direction: column;
     padding: 0 16px;
@@ -349,7 +355,6 @@ body::before {
     border-left: 3px solid var(--accent);
     color: var(--accent);
     font-weight: 600;
-    /* background-color: var(--border-light); */
     border-radius: 0 8px 8px 0;
     padding-left: 16px;
 }
@@ -415,7 +420,7 @@ h1 {
     letter-spacing: -0.5px;
     margin: 0;
     text-align: center;
-    border-bottom: 2px solid var(--accent); /* Replaced light border with accent pop */
+    border-bottom: 2px solid var(--accent); 
     padding-bottom: 0.6em;
     display: inline-block;
     width: 100%;
@@ -448,7 +453,6 @@ strong {
 .obsidian-comment {
     color: var(--text-muted);
     font-size: 0.95em;
-    /* font-style line has been completely removed */
 }
 
 em { font-style: italic; }

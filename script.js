@@ -185,7 +185,7 @@ function buildNavigation() {
 function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
     const themeToggleBtn = document.getElementById(toggleBtnId);
     const themeIcon = document.getElementById(iconId);
-    const themeMeta = document.getElementById('theme-color-meta'); // Grab the meta tag
+    const themeMeta = document.getElementById('theme-color-meta'); 
     
     if (!themeToggleBtn || !themeIcon) return;
 
@@ -196,8 +196,7 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
         
         // --- Sync Mobile Navigation Bar Color ---
         if (themeMeta) {
-            // Replace '#1e272e' with the exact background color of your dark theme
-            const metaColor = theme === 'light' ? '#fbc2eb' : '#1e272e';
+            const metaColor = theme === 'light' ? '#fbc2eb' : '#1f150c';
             themeMeta.setAttribute('content', metaColor);
         }
     };
@@ -214,7 +213,7 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = 'chord-theme') {
 function initLegendToggle() {
     const legendCard = document.getElementById('legend-card');
     const toggleBtn = document.getElementById('legend-toggle');
-    const legendHeader = legendCard.querySelector('.legend-header'); // Target the header
+    const legendHeader = legendCard.querySelector('.legend-header'); 
     
     if (!legendCard || !toggleBtn || !legendHeader) return;
 
@@ -237,7 +236,7 @@ function initLegendToggle() {
 function initTOCToggle() {
     const tocCard = document.getElementById('toc-card');
     const toggleBtn = document.getElementById('toc-toggle');
-    const tocHeader = tocCard.querySelector('.toc-header'); // Target the header
+    const tocHeader = tocCard.querySelector('.toc-header'); 
     
     if (!tocCard || !toggleBtn || !tocHeader) return;
 
@@ -323,8 +322,8 @@ function initMobileNavbar() {
                 hideTimer = setTimeout(() => {
                     navbar.classList.add('nav-hidden');
                     closeAllMobileDropdowns();
-                    hideTimer = null; // Reset timer after it fires
-                }, 600); // <--- DELAY IN MILLISECONDS (600 = 0.6 seconds)
+                    hideTimer = null; 
+                }, 600); 
             }
         } else if (currentScrollY < lastScrollY) {
             // SCROLLING UP -> Cancel the hide timer instantly and show the menu
