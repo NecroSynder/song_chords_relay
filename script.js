@@ -2,12 +2,13 @@
 // 1. CHORD CONFIGURATION & TRACKING
 // ==========================================
 
+// Configured as objects to store file paths and their respective song keys
 const chordFiles = [
-//   "chords/the-joy.md",
-//   "chords/tribes.md",
-//   "chords/more-than-able.md",
-//   "chords/sing-the-name.md",
-  // Add additional markdown chord files here
+  // { path: "chords/the-joy.md", key: "D" },
+  // { path: "chords/tribes.md", key: "D" },
+  // { path: "chords/more-than-able.md", key: "D" },
+  // { path: "chords/sing-the-name.md", key: "G" },
+  // Add additional markdown chord files here: { path: "chords/filename.md", key: "C#" }
 ];
 
 // ==========================================
@@ -79,7 +80,7 @@ async function loadAndRenderChords() {
   if (!chordFiles || chordFiles.length === 0) {
     container.innerHTML = `
       <div class="empty-state-message">
-        Chords will be added when there is a new Line-Up
+        Chords will be added when there is a new Line-Up.
       </div>
     `;
     buildNavigation(); // Clears out desktop & mobile song menus cleanly
@@ -88,8 +89,8 @@ async function loadAndRenderChords() {
 
   try {
     const fetchPromises = chordFiles.map((file) =>
-      fetch(file).then((res) => {
-        if (!res.ok) throw new Error(`Could not fetch ${file}`);
+      fetch(file.path).then((res) => {
+        if (!res.ok) throw new Error(`Could not fetch ${file.path}`);
         return res.text();
       }),
     );
@@ -101,6 +102,10 @@ async function loadAndRenderChords() {
       const card = document.createElement("section");
       card.className = "markdown-reading-view";
       card.id = `chord-card-${index}`;
+
+      // Store the key inside data attributes to make it accessible to navigation builders
+      card.dataset.key = chordFiles[index].key || "";
+
       card.innerHTML = parseMarkdown(markdownText);
       fragment.appendChild(card);
     });
@@ -140,11 +145,18 @@ function buildNavigation() {
   cards.forEach((card, index) => {
     const heading = card.querySelector("h1, h2, h3, h4, h5, h6");
     const titleText = heading ? heading.textContent : `Song ${index + 1}`;
+    const songKey = card.dataset.key;
+
+    // Structured inner HTML containing isolated title and key badge elements
+    const buttonHTML = `
+      <span class="song-title">${titleText}</span>
+      ${songKey ? `<span class="song-key">${songKey}</span>` : ""}
+    `;
 
     // --- 1. Desktop TOC Button ---
     if (tocContent) {
       const navBtn = document.createElement("button");
-      navBtn.textContent = titleText;
+      navBtn.innerHTML = buttonHTML;
       navBtn.title = titleText;
       navBtn.addEventListener("click", () => {
         card.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -155,7 +167,7 @@ function buildNavigation() {
     // --- 2. Mobile Dropdown Button ---
     if (mobileSongsContent) {
       const mobileBtn = document.createElement("button");
-      mobileBtn.textContent = titleText;
+      mobileBtn.innerHTML = buttonHTML;
       mobileBtn.addEventListener("click", () => {
         // Calculate scroll position factoring in the fixed mobile header (70px offset)
         const offsetPosition =
