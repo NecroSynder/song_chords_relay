@@ -608,3 +608,34 @@ em {
     box-shadow: var(--shadow-large);
   }
 }
+
+/* ----------------------------------
+   EMPTY STATE BACKGROUND MESSAGE
+----------------------------------- */
+.empty-state-message {
+  font-size: 1.4em;
+  color: var(--text-main);
+  opacity: 0.65;
+  text-align: center;
+  margin-top: 15vh;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  padding: 0 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  animation: fadeIn 0.5s ease forward;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 0.65; transform: translateY(0); }
+}
+
+/* Responsive adjustment for smaller viewports */
+@media (max-width: 768px) {
+  .empty-state-message {
+    font-size: 1.1em;
+    margin-top: 10vh;
+  }
+}

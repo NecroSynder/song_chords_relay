@@ -3,10 +3,10 @@
 // ==========================================
 
 const chordFiles = [
-  "chords/the-joy.md",
-  "chords/tribes.md",
-  "chords/more-than-able.md",
-  "chords/sing-the-name.md",
+//   "chords/the-joy.md",
+//   "chords/tribes.md",
+//   "chords/more-than-able.md",
+//   "chords/sing-the-name.md",
   // Add additional markdown chord files here
 ];
 
@@ -74,6 +74,17 @@ function parseMarkdown(text) {
 async function loadAndRenderChords() {
   const container = document.getElementById("chord-container");
   if (!container) return;
+
+  // --- Handle Empty State ---
+  if (!chordFiles || chordFiles.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state-message">
+        Chords will be added when there is a new Line-Up
+      </div>
+    `;
+    buildNavigation(); // Clears out desktop & mobile song menus cleanly
+    return;
+  }
 
   try {
     const fetchPromises = chordFiles.map((file) =>
