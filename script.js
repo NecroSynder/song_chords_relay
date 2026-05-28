@@ -4,9 +4,7 @@
 
 // Configured as objects to store file paths and their respective song keys
 const chordFiles = [
-  // { path: "chords/the-joy.md", key: "D" },
-  { path : "chords/trust-in-God.md"},
-  { path: "chords/build-my-life.md" }
+  // EXAMPLE: { path: "chords/the-joy.md", key: "D" },
   // Add additional markdown chord files here: { path: "chords/filename.md", key: "C#" }
 ];
 
