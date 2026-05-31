@@ -5,6 +5,7 @@
 // Configured as objects to store file paths and their respective song keys
 const chordFiles = [
   // EXAMPLE: { path: "chords/the-joy.md", key: "D" },
+  { path: "chords/the-joy.md", key: "D" },
   // Add additional markdown chord files here: { path: "chords/filename.md", key: "C#" }
 ];
 
@@ -231,7 +232,8 @@ function initThemeToggle(toggleBtnId, iconId, storageKey = "chord-theme") {
 
     // --- Sync Mobile Navigation Bar Color ---
     if (themeMeta) {
-      const metaColor = theme === "light" ? "#fbc2eb" : "#1f150c";
+      // UPDATED: Pure white for light mode, pure black for dark mode
+      const metaColor = theme === "light" ? "#ffffff" : "#000000";
       themeMeta.setAttribute("content", metaColor);
     }
   };
@@ -350,24 +352,19 @@ function initMobileNavbar() {
     () => {
       const currentScrollY = window.scrollY;
 
-      // Prevent action on iOS elastic scroll bounce
-      if (currentScrollY <= 0) return;
+      // Prevent action on iOS/Android elastic scroll bounce
+      if (currentScrollY <= 0) {
+        navbar.classList.remove("nav-hidden");
+        return;
+      }
 
+      // Scroll threshold to trigger hide/show
       if (currentScrollY > lastScrollY && currentScrollY > 60) {
-        // SCROLLING DOWN -> Start a timer to delay the hide
-        if (!hideTimer) {
-          hideTimer = setTimeout(() => {
-            // navbar.classList.add('nav-hidden');
-            closeAllMobileDropdowns();
-            hideTimer = null;
-          }, 600);
-        }
+        // SCROLLING DOWN -> Instantly hide nav and close dropdowns
+        navbar.classList.add("nav-hidden");
+        closeAllMobileDropdowns();
       } else if (currentScrollY < lastScrollY) {
-        // SCROLLING UP -> Cancel the hide timer instantly and show the menu
-        if (hideTimer) {
-          clearTimeout(hideTimer);
-          hideTimer = null;
-        }
+        // SCROLLING UP -> Instantly show nav
         navbar.classList.remove("nav-hidden");
       }
 
