@@ -348,31 +348,31 @@ function initMobileNavbar() {
   }
 
   // Handle show-on-scroll-up / hide-on-scroll-down
-  window.addEventListener(
-    "scroll",
-    () => {
-      const currentScrollY = window.scrollY;
+  // window.addEventListener(
+  //   "scroll",
+  //   () => {
+  //     const currentScrollY = window.scrollY;
 
-      // Prevent action on iOS/Android elastic scroll bounce
-      if (currentScrollY <= 0) {
-        navbar.classList.remove("nav-hidden");
-        return;
-      }
+  //     // Prevent action on iOS/Android elastic scroll bounce
+  //     if (currentScrollY <= 0) {
+  //       navbar.classList.remove("nav-hidden");
+  //       return;
+  //     }
 
-      // Scroll threshold to trigger hide/show
-      if (currentScrollY > lastScrollY && currentScrollY > 60) {
-        // SCROLLING DOWN -> Instantly hide nav and close dropdowns
-        navbar.classList.add("nav-hidden");
-        closeAllMobileDropdowns();
-      } else if (currentScrollY < lastScrollY) {
-        // SCROLLING UP -> Instantly show nav
-        navbar.classList.remove("nav-hidden");
-      }
+  //     // Scroll threshold to trigger hide/show
+  //     if (currentScrollY > lastScrollY && currentScrollY > 60) {
+  //       // SCROLLING DOWN -> Instantly hide nav and close dropdowns
+  //       navbar.classList.add("nav-hidden");
+  //       closeAllMobileDropdowns();
+  //     } else if (currentScrollY < lastScrollY) {
+  //       // SCROLLING UP -> Instantly show nav
+  //       navbar.classList.remove("nav-hidden");
+  //     }
 
-      lastScrollY = currentScrollY;
-    },
-    { passive: true },
-  );
+  //     lastScrollY = currentScrollY;
+  //   },
+  //   { passive: true },
+  // );
 
   // Dismiss menu when tapping outside anywhere on the document
   document.addEventListener("click", (e) => {
