@@ -106,6 +106,7 @@ body::before {
   gap: 48px;
   width: 100%;
   max-width: 750px;
+  padding-bottom: 40vh;
 }
 
 .markdown-reading-view {
