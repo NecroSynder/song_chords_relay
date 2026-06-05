@@ -9,7 +9,7 @@ const chordFiles = [
   { path: "chords/Jesus_is_alive.md", key: "N/A" },
   { path: "chords/Jesus_be_the_name.md", key: "N/A" },
   { path: "chords/this_is_the_time.md", key: "N/A" },
-  { path: "chords/one_way.md", key: "N/A" },
+  { path: "chords/one_day.md", key: "N/A" },
   // Add additional markdown chord files here: { path: "chords/filename.md", key: "C#" }
 ];
 
