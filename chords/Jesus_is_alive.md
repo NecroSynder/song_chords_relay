@@ -1,4 +1,4 @@
-# Jesus is Alive w/ Lord I lift
+# Jesus is Alive
 
 **Verse 1**
 2--- (2 3 4 3 2)
@@ -27,24 +27,13 @@
 (2 3 : 4 3 2)
 (2 3 4) 5
 
-**Chrous 2**
+**Chorus 2**
 1 3 5m (1$^7$) 6$M^{sus4}$ ~(3 2$b$) or (4 3) or normal pass.~
 2
 (2 3 4 : 3 2)
 (2 3 4) 5
 *REPEAT*
-~FOR TRANSITION~
-(2 3 : 4 : 3 2)
-(2 3 : 4 : 6 2)
-(2 3 : 4$m$ : 7$b$)
-(4$m$ : 5)
+~END~
+2 5 1 (3 2) ~Repeat as desired~
+4 5 1
 
-**Lord I lift/You Came** 
-1 (4 5)
-(6 7 1)
-(4 5)
-(!7 1 2 3 6$b$! : 6 7 1)
-(4 5)
-5/6 3$^{dim7}$ 2 5
-1 3 5/6 5$bm7^{5b}$
-4 7 3$M^{7}$ 6 7 1 3 2 5 1
