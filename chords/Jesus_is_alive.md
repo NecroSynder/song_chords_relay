@@ -15,7 +15,7 @@
 2
 (2 3 : 4 3 2)
 (2 3 4) 5
-*REPEAT*
+REPEAT
 
 **Verse 2**
 2--- 6--(1)
@@ -32,7 +32,7 @@
 2
 (2 3 4 : 3 2)
 (2 3 4) 5
-*REPEAT*
+REPEAT
 ~END~
 2 5 1 (3 2) ~Repeat as desired~
 4 5 1
