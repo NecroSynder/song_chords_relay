@@ -2,7 +2,7 @@
 
 **INTRO**
 1 (1) 4 5 ~REPEAT 2x~ 
-~It is either 1 or 6~
+~? 1 or 6 ?~
 
 **VERSE 1**
 1 5 5/3 4 5sus

@@ -8,6 +8,7 @@ const chordFiles = [
   { path: "chords/worthy.md", key: "C#" },
   { path: "chords/holy-forever.md", key: "F#" },
   { path: "chords/overflow.md", key: "D" },
+  { path: "chords/inside-out.md", key: "C" },
   // Add additional markdown chord files here: { path: "chords/filename.md", key: "C#" }
 ];
 
