@@ -1,9 +1,9 @@
 # Inside Out
 
-INTRO
+**INTRO**
 4 1 5
 
-VERSE 1
+**VERSE 1**
 4 1 5
 4 1 5
 6 4 1 5
@@ -11,17 +11,17 @@ VERSE 1
 
 ~REPEAT INTRO~
 
-VERSE 2
+**VERSE 2**
 4 1 5
 4 1 5
 6 4 1 5
 6 4 1 5
 
-PRE-CHORUS
+**PRE-CHORUS**
 4 1 6 5
 4 6 5 2
 
-CHORUS
+**CHORUS**
 6 4 1 5
 6 4 1 5
 1 4 5 6
