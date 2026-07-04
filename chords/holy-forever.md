@@ -1,0 +1,26 @@
+# Holy Forever
+
+**INTRO**
+4 5 1/3 6
+4 5 1/3 6 ~(5)~
+
+**VERSE 2**
+1 4 1
+6 5 4
+1 4 1
+6 5 4
+~6 5 4~
+
+**PRE-CHORUS**
+4 (6) 5 6 4 ~REPEAT AS DESIRED~
+4 (6) 5 6 2
+
+**CHORUS**
+4 (6) 5 3 6
+2 5 1
+
+REPEAT PRE-CHORUS 2x
+REPEAT CHORUS AS DESIRED
+
+TAG/END
+2 5 1
